@@ -1,5 +1,6 @@
 import 'package:e_commerce/const/app_string.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class SplashScreen extends StatelessWidget {
               child: Text(
             AppString.appName,
             style: TextStyle(
-              fontSize: 44.0,
+              fontSize: 44.0.sp,
               fontWeight: FontWeight.w500,
               color: Colors.white,
             ),
