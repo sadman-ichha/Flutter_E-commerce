@@ -1,8 +1,9 @@
 import 'package:e_commerce/const/app_colors.dart';
 import 'package:e_commerce/const/app_string.dart';
-import 'package:e_commerce/ui/views/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'auth/registration_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
