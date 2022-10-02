@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:e_commerce/const/app_colors.dart';
 import 'package:e_commerce/ui/views/user_form.dart';
-import 'package:e_commerce/ui/widgets/custom_text_field.dart';
+import 'package:e_commerce/ui/widgets/custom_with_img_text_field.dart';
 import 'package:e_commerce/ui/widgets/pastelButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
