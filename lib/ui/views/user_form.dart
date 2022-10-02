@@ -1,3 +1,5 @@
+
+
 import 'package:e_commerce/const/app_colors.dart';
 import 'package:e_commerce/ui/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,21 @@ class _UserFormScreenState extends State<UserFormScreen> {
   TextEditingController _ageController = TextEditingController();
 
   List<String> genderItems = ["Male", "Female", "Others"];
+  DateTime currentDate = DateTime.now();
+  String ?dob;
+
+  selectedDate(context) async {
+    final showDate = await showDatePicker(
+        context: context,
+        initialDate: currentDate,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2030));
+
+    // if (showDate != null && showDate != currentDate) {
+    //   dob = "${showDate.day}-${showDate.month}-${showDate.year}";
+    //   _dobController.text = dob!;
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +77,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
                   hintStyle:
                       TextStyle(fontSize: 17.0.sp, fontWeight: FontWeight.w300),
                   suffixIcon: IconButton(
-                    onPressed: () {},
+                    onPressed: () => selectedDate(context),
                     icon: Image.asset(
                       'assets/icons/calendar.png',
                       width: 22.0.w,
@@ -78,7 +95,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
                   hintText: "Gender",
                   hintStyle:
                       TextStyle(fontSize: 17.0.sp, fontWeight: FontWeight.w300),
-                  prefixIcon: DropdownButton(
+                  suffixIcon: DropdownButton(
                       items: genderItems.map((String value) {
                         return DropdownMenuItem(
                           value: value,
