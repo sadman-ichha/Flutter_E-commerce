@@ -1,7 +1,7 @@
-
-
 import 'package:e_commerce/const/app_colors.dart';
+import 'package:e_commerce/ui/views/auth/login_screen.dart';
 import 'package:e_commerce/ui/widgets/custom_text_field.dart';
+import 'package:e_commerce/ui/widgets/pastelButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,7 +21,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
 
   List<String> genderItems = ["Male", "Female", "Others"];
   DateTime currentDate = DateTime.now();
-  String ?dob;
+  String? dob;
 
   selectedDate(context) async {
     final showDate = await showDatePicker(
@@ -30,22 +30,23 @@ class _UserFormScreenState extends State<UserFormScreen> {
         firstDate: DateTime(2000),
         lastDate: DateTime(2030));
 
-    // if (showDate != null && showDate != currentDate) {
-    //   dob = "${showDate.day}-${showDate.month}-${showDate.year}";
-    //   _dobController.text = dob!;
-    // }
+    if (showDate != null && showDate != currentDate) {
+      dob = "${showDate.day}-${showDate.month}-${showDate.year}";
+      _dobController.text = dob!;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(left: 25.0.w, right: 35.0.w),
-        child: Column(
+        padding: EdgeInsets.only(left: 35.0.w, right: 35.0.w),
+        child: SingleChildScrollView(
+          child: Column(
             // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 120.0.h),
+              SizedBox(height: 100.0.h),
               Text(
                 "Submit the form to continue.",
                 style: TextStyle(
@@ -63,7 +64,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
                   color: Colors.black87,
                 ),
               ),
-              SizedBox(height: 100.0.h),
+              SizedBox(height: 80.0.h),
               customTextField("Name", _nameController, TextInputType.name),
               SizedBox(height: 10.0.h),
               customTextField(
@@ -112,7 +113,15 @@ class _UserFormScreenState extends State<UserFormScreen> {
               ),
               SizedBox(height: 10.0.h),
               customTextField("Age", _ageController, TextInputType.number),
-            ]),
+              SizedBox(height: 140.0.h),
+              Center(
+                  child: pastelRedButton(
+                      "SUBMIT",
+                      () => Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => LoginScreen())))),
+            ],
+          ),
+        ),
       ),
     );
   }

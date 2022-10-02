@@ -2,7 +2,9 @@ import 'package:e_commerce/const/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../views/auth/login.dart';
+import '../views/auth/login_screen.dart';
+
+
 
 Widget pastelRedButton(String title, onAction) {
   return InkWell(
@@ -42,7 +44,7 @@ Widget anAccountName(context, String title1, String title2) {
       ),
       GestureDetector(
         onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LogInScreen())),
+            context, MaterialPageRoute(builder: (context) => LoginScreen())),
         child: Text(
           title2,
           style: TextStyle(

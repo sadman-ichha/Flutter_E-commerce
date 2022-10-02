@@ -1,6 +1,4 @@
-import 'dart:ui';
 import 'package:e_commerce/const/app_colors.dart';
-import 'package:e_commerce/ui/views/user_form.dart';
 import 'package:e_commerce/ui/widgets/custom_with_img_text_field.dart';
 import 'package:e_commerce/ui/widgets/pastelButton.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +23,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 80.0.h),
+          SizedBox(height: 100.0.h),
           Padding(
             padding: EdgeInsets.only(left: 20.0.w),
             child: Text(
@@ -36,7 +34,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   fontWeight: FontWeight.w300),
             ),
           ),
-          SizedBox(height: 50.0.h),
+          SizedBox(height: 100.0.h),
           Expanded(
             child: Container(
               width: ScreenUtil().screenWidth,
@@ -55,7 +53,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     children: [
                       SizedBox(height: 30.0.h),
                       Text(
-                        "Welcome Back",
+                        "Welcome Buddy!",
                         style: TextStyle(
                             color: AppColors.pastelRed,
                             fontSize: 35.0.sp,
@@ -122,13 +120,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       SizedBox(height: 160.0.h),
                       Padding(
                         padding: EdgeInsets.only(left: 15.0.w),
-                        child: pastelRedButton(
-                          "SIGN UP",
-                          () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => UserFormScreen())),
-                        ),
+                        child: pastelRedButton("SIGN UP", () {}),
                       ),
                       SizedBox(height: 20.0.h),
                       Center(
