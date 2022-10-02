@@ -3,7 +3,7 @@ import 'package:e_commerce/const/app_string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'auth/registration_screen.dart';
+import 'auth/signup_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
         Duration(seconds: 1),
         () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => RegistrationScreen())));
+            MaterialPageRoute(builder: (context) => SignUpScreen())));
     super.initState();
   }
 

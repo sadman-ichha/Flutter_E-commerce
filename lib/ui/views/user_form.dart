@@ -114,11 +114,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
               SizedBox(height: 10.0.h),
               customTextField("Age", _ageController, TextInputType.number),
               SizedBox(height: 140.0.h),
-              Center(
-                  child: pastelRedButton(
-                      "SUBMIT",
-                      () => Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => LoginScreen())))),
+              Center(child: pastelRedButton("SUBMIT", {})),
             ],
           ),
         ),
