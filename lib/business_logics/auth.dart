@@ -1,3 +1,4 @@
+import 'package:e_commerce/ui/views/bottom_nav_controller/home_screen.dart';
 import 'package:e_commerce/ui/views/user_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,29 @@ class Auth {
       }
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error is : $e');
+    }
+  }
+
+  Future logIn(context, String emailAddress, String password) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: emailAddress, password: password);
+      var authCredential = userCredential.user;
+      if (authCredential!.uid.isNotEmpty) {
+        Fluttertoast.showToast(msg: 'Login Successful');
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => HomeScreen()));
+      } else {
+        Fluttertoast.showToast(msg: 'Login Failed');
+      }
+    } on FirebaseException catch (e) {
+      if (e.code == 'user-not-found') {
+        Fluttertoast.showToast(msg: 'No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(msg: 'Wrong password provided');
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'Somethings is Wrong');
     }
   }
 }
