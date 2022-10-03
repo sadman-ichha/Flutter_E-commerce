@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(height: 160.0.h),
                         Padding(
                           padding: EdgeInsets.only(left: 15.0.w),
-                          child: pastelRedButton("LOG IN", () {}),
+                          child: PastelRedButton("LOG IN", () {}),
                         ),
                         SizedBox(height: 20.0.h),
                         Center(

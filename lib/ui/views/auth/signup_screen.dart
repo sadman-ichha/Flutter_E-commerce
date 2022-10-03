@@ -1,4 +1,6 @@
+import 'package:e_commerce/business_logics/auth.dart';
 import 'package:e_commerce/const/app_colors.dart';
+import 'package:e_commerce/ui/views/user_form.dart';
 import 'package:e_commerce/ui/widgets/custom_with_img_text_field.dart';
 import 'package:e_commerce/ui/widgets/pastelButton.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +120,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ],
                       ),
                       SizedBox(height: 160.0.h),
-                      Padding(
-                        padding: EdgeInsets.only(left: 15.0.w),
-                        child: pastelRedButton("SIGN UP", () {}),
+                      Center(
+                        child: PastelRedButton(
+                            "SIGN UP",
+                            () => Auth().signUp(context, _emailController.text,
+                                _passwordController.text)),
                       ),
                       SizedBox(height: 20.0.h),
                       Center(
