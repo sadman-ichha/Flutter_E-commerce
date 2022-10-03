@@ -1,3 +1,4 @@
+import 'package:e_commerce/business_logics/form.dart';
 import 'package:e_commerce/const/app_colors.dart';
 import 'package:e_commerce/ui/widgets/custom_text_field.dart';
 import 'package:e_commerce/ui/widgets/pastelButton.dart';
@@ -113,7 +114,16 @@ class _UserFormScreenState extends State<UserFormScreen> {
               SizedBox(height: 10.0.h),
               customTextField("Age", _ageController, TextInputType.number),
               SizedBox(height: 140.0.h),
-              PastelRedButton("CONTINIUE", (){})
+              PastelRedButton(
+                "CONTINIUE",
+                () => userInfo().sentDataToDB(
+                    context,
+                    _nameController.text,
+                    int.parse(_phoneController.text),
+                    _dobController.text,
+                    _genderController.text,
+                    int.parse(_ageController.text)),
+              ),
             ],
           ),
         ),
