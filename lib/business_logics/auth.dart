@@ -3,11 +3,8 @@ import 'package:e_commerce/ui/views/user_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Auth {
-  final box = SharedPreferences.getInstance();
-
   Future signUp(context, String emailAddress, String password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance

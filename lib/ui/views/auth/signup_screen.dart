@@ -1,10 +1,11 @@
 import 'package:e_commerce/business_logics/auth.dart';
 import 'package:e_commerce/const/app_colors.dart';
-import 'package:e_commerce/ui/views/user_form.dart';
 import 'package:e_commerce/ui/widgets/custom_with_img_text_field.dart';
 import 'package:e_commerce/ui/widgets/pastelButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -129,7 +130,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(height: 20.0.h),
                       Center(
                           child: anAccountName(
-                              context, "Do you  have an account?", " Sign In")),
+                              context,
+                              "Do you  have an account?",
+                              " Login",
+                              () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginScreen())))),
                     ],
                   ),
                 ),

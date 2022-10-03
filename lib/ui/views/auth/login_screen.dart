@@ -1,5 +1,7 @@
 import 'dart:ui';
+import 'package:e_commerce/business_logics/auth.dart';
 import 'package:e_commerce/const/app_colors.dart';
+import 'package:e_commerce/ui/views/auth/signup_screen.dart';
 import 'package:e_commerce/ui/views/user_form.dart';
 import 'package:e_commerce/ui/widgets/custom_with_img_text_field.dart';
 import 'package:e_commerce/ui/widgets/pastelButton.dart';
@@ -123,12 +125,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(height: 160.0.h),
                         Padding(
                           padding: EdgeInsets.only(left: 15.0.w),
-                          child: PastelRedButton("LOG IN", () {}),
+                          child: PastelRedButton(
+                              "LOG IN",
+                              () => Auth().logIn(context, _emailController.text,
+                                  _passwordController.text)),
                         ),
                         SizedBox(height: 20.0.h),
                         Center(
                             child: anAccountName(
-                                context, "Don't have an account?", " Sign Up")),
+                                context, "Don't have an account?", " SignUp",()=>Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SignUpScreen())))),
                       ],
                     ),
                   ),

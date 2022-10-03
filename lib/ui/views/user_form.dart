@@ -1,5 +1,4 @@
 import 'package:e_commerce/const/app_colors.dart';
-import 'package:e_commerce/ui/views/auth/login_screen.dart';
 import 'package:e_commerce/ui/widgets/custom_text_field.dart';
 import 'package:e_commerce/ui/widgets/pastelButton.dart';
 import 'package:flutter/material.dart';

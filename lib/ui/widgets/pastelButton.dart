@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../const/app_colors.dart';
 import '../views/auth/login_screen.dart';
 
 class PastelRedButton extends StatefulWidget {
   String title;
   final Function onAction;
-  PastelRedButton(this.title, this.onAction);
+  PastelRedButton(
+    this.title,
+    this.onAction,
+  );
 
   @override
   State<PastelRedButton> createState() => _PastelRedButtonState();
@@ -43,7 +45,7 @@ class _PastelRedButtonState extends State<PastelRedButton> {
   }
 }
 
-Widget anAccountName(context, String title1, String title2) {
+Widget anAccountName(context, String title1, String title2,Function onAction) {
   return Wrap(
     children: [
       Text(
@@ -55,8 +57,7 @@ Widget anAccountName(context, String title1, String title2) {
         ),
       ),
       GestureDetector(
-        onTap: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginScreen())),
+        onTap: () => onAction(),
         child: Text(
           title2,
           style: TextStyle(
