@@ -1,8 +1,9 @@
-import 'package:e_commerce/ui/views/bottom_nav_controller/home_screen.dart';
 import 'package:e_commerce/ui/views/user_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../ui/views/bottom_nav_controller.dart';
 
 class Auth {
   Future signUp(context, String emailAddress, String password) async {
@@ -40,7 +41,7 @@ class Auth {
       if (authCredential!.uid.isNotEmpty) {
         Fluttertoast.showToast(msg: 'Login Successful');
         Navigator.push(
-            context, MaterialPageRoute(builder: (_) => HomeScreen()));
+            context, MaterialPageRoute(builder: (_) => BottomNavController()));
       } else {
         Fluttertoast.showToast(msg: 'Login Failed');
       }

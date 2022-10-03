@@ -115,7 +115,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
               customTextField("Age", _ageController, TextInputType.number),
               SizedBox(height: 140.0.h),
               PastelRedButton(
-                "CONTINIUE",
+                "Submit",
                 () => userInfo().sentDataToDB(
                     context,
                     _nameController.text,
