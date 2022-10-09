@@ -20,19 +20,7 @@ class _HomeScreenState extends State<BottomNavController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          "E-Commerce",
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 35.0.sp,
-              fontWeight: FontWeight.w600),
-        ),
-      ),
+     
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: AppColors.pastelRed,
         unselectedItemColor: Colors.black,
