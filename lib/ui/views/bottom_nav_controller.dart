@@ -21,6 +21,10 @@ class _HomeScreenState extends State<BottomNavController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: Text(
           "E-Commerce",
           style: TextStyle(
