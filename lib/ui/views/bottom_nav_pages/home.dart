@@ -15,16 +15,7 @@ class _HomeState extends State<Home> {
       body: Column(
         children: [
           SizedBox(height: 100.0.h),
-          Center(
-            child: Text(
-              "E-Commerce",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 35.0.sp,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          
+          Center(),
         ],
       ),
     );
