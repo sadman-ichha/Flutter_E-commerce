@@ -24,11 +24,13 @@ class _HomeState extends State<Home> {
     QuerySnapshot qn =
         await _firestoreInstance.collection("carousel-slider").get();
 
-    for (int i = 0; i < qn.docs.length; i++) {
-      _carouselImages.add(
-        qn.docs[i]["img-path"],
-      );
-    }
+    setState(() {
+      for (int i = 0; i < qn.docs.length; i++) {
+        _carouselImages.add(
+          qn.docs[i]["img-path"],
+        );
+      }
+    });
   }
 
   @override
