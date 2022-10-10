@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:ui';
-
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/const/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   TextEditingController _searchController = TextEditingController();
+
+  fatchCarCarouselImages() async {
+    FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
+    QuerySnapshot qn =
+        await _firestoreInstance.collection("carousel-slider").get();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +44,7 @@ class _HomeState extends State<Home> {
           children: [
             // SizedBox(height: 30.0.h),
             Padding(
-              padding:  EdgeInsets.only(left: 30.0.w,right: 30.0.w),
+              padding: EdgeInsets.only(left: 30.0.w, right: 30.0.w),
               child: Row(
                 children: [
                   Expanded(
@@ -47,7 +55,8 @@ class _HomeState extends State<Home> {
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(0)),
                               borderSide: BorderSide(color: Colors.blue)),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(0)),
@@ -77,8 +86,8 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-    SizedBox(height: 10.0.h),
-
+            SizedBox(height: 10.0.h),
+            CarouselSlider(items: items, options: options)
           ],
         ),
       ),
