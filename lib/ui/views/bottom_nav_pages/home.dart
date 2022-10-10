@@ -15,12 +15,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<String> _carouselImages = [];
+
   TextEditingController _searchController = TextEditingController();
 
   fatchCarCarouselImages() async {
     FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
     QuerySnapshot qn =
         await _firestoreInstance.collection("carousel-slider").get();
+
+    for (int i = 0; i < qn.docs.length; i++) {
+      _carouselImages.add(
+        qn.docs[i]["img-path"],
+      );
+    }
   }
 
   @override
