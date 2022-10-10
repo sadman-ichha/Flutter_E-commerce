@@ -3,6 +3,7 @@
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/const/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,12 +16,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
   List<String> _carouselImages = [];
+  var dotsPosition = 0;
 
   TextEditingController _searchController = TextEditingController();
 
   fatchCarCarouselImages() async {
-    FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
     QuerySnapshot qn =
         await _firestoreInstance.collection("carousel-slider").get();
 
@@ -32,6 +34,11 @@ class _HomeState extends State<Home> {
       }
     });
     return qn.docs;
+  }
+
+  fatchProduct() async {
+    QuerySnapshot qn =
+        await _firestoreInstance.collection("products-images").get();
   }
 
   @override
@@ -108,21 +115,71 @@ class _HomeState extends State<Home> {
               aspectRatio: 3.5,
               child: CarouselSlider(
                 options: CarouselOptions(
-                  height: 150.0.h,
+                  height: 155.0.h,
                   enlargeCenterPage: true,
                   enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                  autoPlay: true,
+                  // autoPlay: true,
+                  onPageChanged: (currentIndex, carouselPageChangedReason) {
+                    setState(() {
+                      dotsPosition = currentIndex;
+                    });
+                  },
                 ),
                 items: _carouselImages
-                    .map((item) => Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(item), fit: BoxFit.cover),
+                    .map((item) => ClipRRect(
+                          borderRadius: BorderRadius.circular(7.0.r),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(item), fit: BoxFit.cover),
+                            ),
                           ),
                         ))
                     .toList(),
               ),
             ),
+            SizedBox(height: 5.0.h),
+            DotsIndicator(
+              dotsCount:
+                  _carouselImages.length == 0 ? 1 : _carouselImages.length,
+              position: dotsPosition.toDouble(),
+              decorator: DotsDecorator(
+                color: Color.fromARGB(255, 246, 198, 194),
+                activeColor: AppColors.pastelRed,
+                size: Size(8.0.w, 8.0.h),
+              ),
+            ),
+            SizedBox(height: 10.0.h),
+            Padding(
+              padding: EdgeInsets.only(left: 30.0.w, right: 30.0.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Top Products",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0.sp,
+                        fontWeight: FontWeight.w300),
+                  ),
+                  Text(
+                    "View All >",
+                    style: TextStyle(
+                        color: AppColors.pastelRed,
+                        fontSize: 15.0.sp,
+                        fontWeight: FontWeight.w300),
+                  )
+                ],
+              ),
+            ),
+
+            Expanded(
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                    itemBuilder: (buildContext, index) {
+                      return Card();
+                    }))
           ],
         ),
       ),
