@@ -31,6 +31,13 @@ class _HomeState extends State<Home> {
         );
       }
     });
+    return qn.docs;
+  }
+
+  @override
+  void initState() {
+    fatchCarCarouselImages();
+    super.initState();
   }
 
   @override
