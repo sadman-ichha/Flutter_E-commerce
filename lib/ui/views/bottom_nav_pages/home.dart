@@ -34,14 +34,14 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 30.0.h),
+            // SizedBox(height: 30.0.h),
             Padding(
-              padding:  EdgeInsets.only(left: 25.0.w,right: 25.0.w),
+              padding:  EdgeInsets.only(left: 30.0.w,right: 30.0.w),
               child: Row(
                 children: [
                   Expanded(
                     child: SizedBox(
-                      height: 60.0.h,
+                      height: 55.0.h,
                       child: TextFormField(
                         readOnly: true,
                         decoration: InputDecoration(
@@ -54,14 +54,14 @@ class _HomeState extends State<Home> {
                             borderSide: BorderSide(color: Colors.black),
                           ),
                           hintText: "Search products here",
-                          hintStyle: TextStyle(height: 1.3.h),
+                          hintStyle: TextStyle(height: 1.0.h),
                         ),
                       ),
                     ),
                   ),
                   Container(
-                    height: 60.0.h,
-                    width: 60.0.h,
+                    height: 55.0.h,
+                    width: 55.0.h,
                     decoration: BoxDecoration(
                       color: AppColors.pastelRed,
                     ),
@@ -77,6 +77,8 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
+    SizedBox(height: 10.0.h),
+
           ],
         ),
       ),
