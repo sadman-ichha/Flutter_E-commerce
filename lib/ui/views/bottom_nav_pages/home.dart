@@ -114,7 +114,7 @@ class _HomeState extends State<Home> {
                           ),
                         ))
                     .toList(),
-                options: options)
+                options: CarouselOptions()),
           ],
         ),
       ),
