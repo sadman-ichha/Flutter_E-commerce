@@ -104,17 +104,25 @@ class _HomeState extends State<Home> {
               ),
             ),
             SizedBox(height: 10.0.h),
-            CarouselSlider(
+            AspectRatio(
+              aspectRatio: 3.5,
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  height: 150.0.h,
+                  enlargeCenterPage: true,
+                  enlargeStrategy: CenterPageEnlargeStrategy.scale,
+                  autoPlay: true,
+                ),
                 items: _carouselImages
                     .map((item) => Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(item),
-                                fit: BoxFit.fitWidth),
+                                image: NetworkImage(item), fit: BoxFit.cover),
                           ),
                         ))
                     .toList(),
-                options: CarouselOptions()),
+              ),
+            ),
           ],
         ),
       ),
