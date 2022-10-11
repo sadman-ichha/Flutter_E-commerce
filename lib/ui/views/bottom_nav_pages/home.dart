@@ -18,6 +18,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   FirebaseFirestore _firestoreInstance = FirebaseFirestore.instance;
   List<String> _carouselImages = [];
+  List _product = [];
   var dotsPosition = 0;
 
   TextEditingController _searchController = TextEditingController();
@@ -39,11 +40,24 @@ class _HomeState extends State<Home> {
   fatchProduct() async {
     QuerySnapshot qn =
         await _firestoreInstance.collection("products-images").get();
+
+    setState(() {
+      for (int i = 0; i < qn.docs.length; i++) {
+        _product.add({
+          // "product-name": qn.docs[i]["products-name"],
+          "product-description": qn.docs[i]["products-description"],
+          "product-price": qn.docs[i]["products-price"],
+          "product-img": qn.docs[i]["products-img"],
+        });
+      }
+    });
+    return qn.docs;
   }
 
   @override
   void initState() {
     fatchCarCarouselImages();
+    fatchProduct();
     super.initState();
   }
 
@@ -172,13 +186,36 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-
+            SizedBox(height: 15.0.h),
             Expanded(
                 child: GridView.builder(
+                    itemCount: _product.length,
+                    scrollDirection: Axis.horizontal,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2),
                     itemBuilder: (buildContext, index) {
-                      return Card();
+                      return Card(
+                        elevation: 3.0,
+                        child: Column(
+                          children: [
+                            AspectRatio(
+                                aspectRatio: 1.4,
+                                child: Container(
+                                  color: AppColors.pastelRed,
+                                  child: Image.network(
+                                      _product[index]["product-img"][1]),
+                                )),
+                            Text("${_product[index]["product-name"]}"),
+                            Text(
+                              "${_product[index]["product-price"].toString()}Tk",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20.0.sp,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      );
                     }))
           ],
         ),
