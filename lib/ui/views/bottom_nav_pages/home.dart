@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
     setState(() {
       for (int i = 0; i < qn.docs.length; i++) {
         _product.add({
-          // "product-name": qn.docs[i]["products-name"],
+          "product-name": qn.docs[i]["products-name"],
           "product-description": qn.docs[i]["products-description"],
           "product-price": qn.docs[i]["products-price"],
           "product-img": qn.docs[i]["products-img"],
@@ -200,11 +200,8 @@ class _HomeState extends State<Home> {
                           children: [
                             AspectRatio(
                                 aspectRatio: 1.4,
-                                child: Container(
-                                  color: AppColors.pastelRed,
-                                  child: Image.network(
-                                      _product[index]["product-img"][1]),
-                                )),
+                                child: Image.network(
+                                    _product[index]["product-img"][0])),
                             Text("${_product[index]["product-name"]}"),
                             Text(
                               "${_product[index]["product-price"].toString()}Tk",
