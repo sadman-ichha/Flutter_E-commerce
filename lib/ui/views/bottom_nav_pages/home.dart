@@ -186,7 +186,7 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            // SizedBox(height: 5.0.h),
+            // SizedBox(height: 10.0.h),
             Expanded(
                 child: GridView.builder(
                     itemCount: _product.length,
@@ -196,6 +196,8 @@ class _HomeState extends State<Home> {
                     itemBuilder: (buildContext, index) {
                       return Card(
                         elevation: 3.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
                         child: Column(
                           children: [
                             AspectRatio(
