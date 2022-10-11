@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/const/app_colors.dart';
+import 'package:e_commerce/ui/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -97,12 +98,15 @@ class _HomeState extends State<Home> {
                                   BorderRadius.all(Radius.circular(0)),
                               borderSide: BorderSide(color: Colors.blue)),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(0)),
                             borderSide: BorderSide(color: Colors.black),
                           ),
                           hintText: "Search products here",
                           hintStyle: TextStyle(height: 1.0.h),
                         ),
+                        onTap:() => Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => SearchScreen())), 
                       ),
                     ),
                   ),
