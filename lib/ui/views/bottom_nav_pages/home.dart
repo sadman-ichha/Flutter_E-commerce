@@ -186,7 +186,7 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            SizedBox(height: 15.0.h),
+            // SizedBox(height: 5.0.h),
             Expanded(
                 child: GridView.builder(
                     itemCount: _product.length,
