@@ -5,7 +5,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/const/app_colors.dart';
-import 'package:e_commerce/ui/search_screen.dart';
+import 'package:e_commerce/ui/views/product_details_screen.dart';
+import 'package:e_commerce/ui/views/search_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -98,15 +100,14 @@ class _HomeState extends State<Home> {
                                   BorderRadius.all(Radius.circular(0)),
                               borderSide: BorderSide(color: Colors.blue)),
                           enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(0)),
+                            borderRadius: BorderRadius.all(Radius.circular(0)),
                             borderSide: BorderSide(color: Colors.black),
                           ),
                           hintText: "Search products here",
                           hintStyle: TextStyle(height: 1.0.h),
                         ),
-                        onTap:() => Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => SearchScreen())), 
+                        onTap: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => SearchScreen())),
                       ),
                     ),
                   ),
@@ -156,6 +157,7 @@ class _HomeState extends State<Home> {
                     .toList(),
               ),
             ),
+            
             SizedBox(height: 5.0.h),
             DotsIndicator(
               dotsCount:
@@ -197,26 +199,32 @@ class _HomeState extends State<Home> {
                     scrollDirection: Axis.horizontal,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2),
-                    itemBuilder: (buildContext, index) {
-                      return Card(
-                        elevation: 3.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Column(
-                          children: [
-                            AspectRatio(
-                                aspectRatio: 1.4,
-                                child: Image.network(
-                                    _product[index]["product-img"][0])),
-                            Text("${_product[index]["product-name"]}"),
-                            Text(
-                              "${_product[index]["product-price"].toString()}Tk",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20.0.sp,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
+                    itemBuilder: (BuildContext context, index) {
+                      return InkWell(
+                        onTap: () => Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (_) => ProductDetailsScreen(_product[index]))),
+                        child: Card(
+                          elevation: 3.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Column(
+                            children: [
+                              AspectRatio(
+                                  aspectRatio: 1.4,
+                                  child: Image.network(
+                                      _product[index]["product-img"][0])),
+                              Text("${_product[index]["product-name"]}"),
+                              Text(
+                                "${_product[index]["product-price"].toString()}Tk",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.0.sp,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }))

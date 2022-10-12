@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class SearchScreen extends StatefulWidget {
   SearchScreen({Key? key}) : super(key: key);
@@ -11,9 +10,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final _productStream =
-      FirebaseFirestore.instance.collection("products-images").snapshots();
-
+  var inputText = "";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,6 +21,11 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               SizedBox(height: 30.0.h),
               TextFormField(
+                onChanged: (val) {
+                  setState(() {
+                    inputText = val;
+                  });
+                },
                 decoration: InputDecoration(
                   hintText: "Search products here",
                 ),
@@ -31,11 +33,14 @@ class _SearchScreenState extends State<SearchScreen> {
               SizedBox(height: 20.0.h),
               Expanded(
                 child: StreamBuilder(
-                  stream: _productStream,
+                  stream: FirebaseFirestore.instance
+                      .collection("products-images")
+                      .where("products-name", isEqualTo: inputText)
+                      .snapshots(),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {
-                      Fluttertoast.showToast(msg: "Something went wrong");
+                      return Center(child: Text("Something went wrong"));
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(child: Text("Loading.."));
@@ -45,11 +50,14 @@ class _SearchScreenState extends State<SearchScreen> {
                           snapshot.data!.docs.map((DocumentSnapshot document) {
                         Map<String, dynamic> data =
                             document.data()! as Map<String, dynamic>;
-                        return ListTile(
-                          title: Text(data["products-name"]),
-                          subtitle:
-                              Text("${data["products-price"].toString()}Tk"),
-                          leading: Image.network(data["products-img"][0]),
+                        return Card(
+                          elevation: 5,
+                          child: ListTile(
+                            title: Text(data["products-name"]),
+                            subtitle:
+                                Text("${data["products-price"].toString()}Tk"),
+                            leading: Image.network(data["products-img"][0]),
+                          ),
                         );
                       }).toList(),
                     );
