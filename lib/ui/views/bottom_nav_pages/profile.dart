@@ -13,8 +13,10 @@ class Profile extends StatefulWidget {
 }
 
 class _HomeState extends State<Profile> {
+  List<String> genderItems = ["Male", "Female", "Others"];
   DateTime currentDate = DateTime.now();
   String? dob;
+
   selectedDate(context) async {
     final showDate = await showDatePicker(
         context: context,
@@ -33,22 +35,22 @@ class _HomeState extends State<Profile> {
   TextEditingController _dobController = TextEditingController();
   TextEditingController _genderController = TextEditingController();
   TextEditingController _ageController = TextEditingController();
-  // final Stream userStream = FirebaseFirestore.instance
-  //     .collection("users-form-data")
-  //     .doc(FirebaseAuth.instance.currentUser!.email)
-  //     .snapshots();
+  final Stream userStream = FirebaseFirestore.instance
+      .collection("users-form-data")
+      .doc(FirebaseAuth.instance.currentUser!.email)
+      .snapshots();
   setUserData(userData) {
     _nameController.text = userData["name"];
     _phoneController.text = userData["phone number"].toString();
     _dobController.text = userData["dob"];
     _ageController.text = userData["age"].toString();
+
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 100.0.h),
         Text(
-          "Submit the form to continue.",
+          "User Profile Update",
           style: TextStyle(
             fontSize: 25.sp,
             fontWeight: FontWeight.w400,
@@ -88,29 +90,6 @@ class _HomeState extends State<Profile> {
           ),
         ),
         SizedBox(height: 10.0.h),
-        // TextField(
-        //   controller: _genderController,
-        //   readOnly: true,
-        //   decoration: InputDecoration(
-        //     hintText: "Gender",
-        //     hintStyle:
-        //         TextStyle(fontSize: 17.0.sp, fontWeight: FontWeight.w300),
-        //     suffixIcon: DropdownButton(
-        //         items: genderItems.map((String value) {
-        //           return DropdownMenuItem(
-        //             value: value,
-        //             child: Text(value),
-        //             onTap: () {
-        //               setState(() {
-        //                 _genderController.text = value;
-        //               });
-        //             },
-        //           );
-        //         }).toList(),
-        //         onChanged: (context) {}),
-        //   ),
-        // ),
-
         SizedBox(height: 10.0.h),
         customTextField("Age", _ageController, TextInputType.number),
         SizedBox(height: 140.0.h),
@@ -135,7 +114,8 @@ class _HomeState extends State<Profile> {
             'dob': _dobController.value.text,
             "age": _ageController.text,
           })
-          .whenComplete(() => Fluttertoast.showToast(msg: "Update Successful"))
+          .whenComplete(
+              () => Fluttertoast.showToast(msg: "Update Successfully"))
           .then((value) => Navigator.pop(context));
     } catch (e) {
       Fluttertoast.showToast(msg: "Something is wrong");
@@ -150,10 +130,7 @@ class _HomeState extends State<Profile> {
           padding: EdgeInsets.only(left: 35.0.w, right: 35.0.w),
           child: SingleChildScrollView(
             child: StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("users-form-data")
-                  .doc(FirebaseAuth.instance.currentUser!.email)
-                  .snapshots(),
+              stream: userStream,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 var userData = snapshot.data;
                 if (!snapshot.hasData) {

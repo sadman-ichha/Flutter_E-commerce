@@ -89,6 +89,9 @@ class _UserFormScreenState extends State<UserFormScreen> {
                 ),
               ),
               SizedBox(height: 10.0.h),
+
+
+
               TextField(
                 controller: _genderController,
                 readOnly: true,
@@ -111,6 +114,13 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       onChanged: (context) {}),
                 ),
               ),
+
+
+
+
+
+
+              
               SizedBox(height: 10.0.h),
               customTextField("Age", _ageController, TextInputType.number),
               SizedBox(height: 140.0.h),
