@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/const/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductDetailsScreen extends StatefulWidget {
   var _products;
   ProductDetailsScreen(this._products);
+
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
@@ -63,12 +65,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         borderRadius: BorderRadius.circular(7.0.r),
                         child: Container(
                           decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(item)),
+                            image: DecorationImage(image: NetworkImage(item)),
                           ),
                         ),
                       ))
                   .toList(),
+            ),
+          ),
+          SizedBox(height: 5.0.h),
+          DotsIndicator(
+            dotsCount: widget._products["product-img"].length,
+            position: dotsPosition.toDouble(),
+            decorator: DotsDecorator(
+              color: Color.fromARGB(255, 246, 198, 194),
+              activeColor: AppColors.pastelRed,
+              size: Size(8.0.w, 8.0.h),
             ),
           ),
         ],
