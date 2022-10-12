@@ -64,7 +64,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         child: Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage(item), fit: BoxFit.cover),
+                                image: NetworkImage(item)),
                           ),
                         ),
                       ))
