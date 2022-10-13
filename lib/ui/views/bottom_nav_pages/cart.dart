@@ -10,11 +10,6 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  // final Stream userStream = FirebaseFirestore.instance
-  //     .collection("user-cart-Items")
-  //     .doc(FirebaseAuth.instance.currentUser!.email)
-  //     .collection("Items")
-  //     .snapshots();
   @override
   Widget build(BuildContext context) {
     return SafeArea(

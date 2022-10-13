@@ -35,6 +35,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     }).then((value) => Fluttertoast.showToast(msg: "Added To Cart"));
   }
 
+  addToFavourite() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentUser = _auth.currentUser;
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("user-fav-items");
+    return _collectionRef
+        .doc(currentUser!.email)
+        .collection("items")
+        .doc()
+        .set({
+      "name": widget._products["product-name"],
+      "price": widget._products["product-price"],
+      "images": widget._products["product-img"],
+    }).then((value) => Fluttertoast.showToast(msg: "Added To Favourite"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +74,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             child: CircleAvatar(
               backgroundColor: AppColors.pastelRed,
               child: IconButton(
-                onPressed: () {},
+                onPressed: () => addToFavourite(),
                 icon: Icon(Icons.favorite_border_outlined, color: Colors.white),
               ),
             ),
@@ -119,7 +135,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           fontSize: 20.0.sp,
                           fontWeight: FontWeight.w400),
                     ),
-                    //  SizedBox(height: 8.0.h),
                     Text(
                       "${widget._products["product-price"]}Tk",
                       style: TextStyle(
@@ -136,7 +151,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           fontWeight: FontWeight.w300),
                     ),
                     SizedBox(height: 150.0.h),
-                    Center(child: PastelRedButton("Add to cart", () =>addToCart())),
+                    Center(
+                        child:
+                            PastelRedButton("Add to cart", () => addToCart())),
                   ],
                 ),
               ),
