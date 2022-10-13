@@ -93,6 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Expanded(
                               child: TextFormField(
                                 controller: _passwordController,
+                                obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: "password must be 6 character",
                                   hintStyle: TextStyle(
@@ -133,8 +134,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(height: 20.0.h),
                         Center(
                             child: anAccountName(
-                                context, "Don't have an account?", " SignUp",()=>Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignUpScreen())))),
+                                context,
+                                "Don't have an account?",
+                                " SignUp",
+                                () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SignUpScreen())))),
                       ],
                     ),
                   ),

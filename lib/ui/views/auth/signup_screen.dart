@@ -91,6 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Expanded(
                             child: TextFormField(
                               controller: _passwordController,
+                              obscureText: true,
                               decoration: InputDecoration(
                                 hintText: "password must be 6 character",
                                 hintStyle: TextStyle(
