@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Favourite extends StatefulWidget {
-  Favourite({Key? key}) : super(key: key);
-
   @override
   State<Favourite> createState() => _FavouriteState();
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_final_fields
 
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -157,7 +157,7 @@ class _HomeState extends State<Home> {
                     .toList(),
               ),
             ),
-            
+
             SizedBox(height: 5.0.h),
             DotsIndicator(
               dotsCount:
@@ -204,7 +204,8 @@ class _HomeState extends State<Home> {
                         onTap: () => Navigator.push(
                             context,
                             CupertinoPageRoute(
-                                builder: (_) => ProductDetailsScreen(_product[index]))),
+                                builder: (_) =>
+                                    ProductDetailsScreen(_product[index]))),
                         child: Card(
                           elevation: 3.0,
                           shape: RoundedRectangleBorder(
