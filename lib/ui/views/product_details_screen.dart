@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/const/app_colors.dart';
 import 'package:e_commerce/ui/widgets/pastelButton.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   var _products;
@@ -15,6 +18,22 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   var dotsPosition = 0;
+
+  addToCart() async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    var currentUser = _auth.currentUser;
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("user-cart-Items");
+    return _collectionRef
+        .doc(currentUser!.email)
+        .collection("Items")
+        .doc()
+        .set({
+      "name": widget._products["product-name"],
+      "price": widget._products["product-price"],
+      "images": widget._products["product-img"],
+    }).then((value) => Fluttertoast.showToast(msg: "Added To Cart"));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +136,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           fontWeight: FontWeight.w300),
                     ),
                     SizedBox(height: 150.0.h),
-                    Center(child: PastelRedButton("Add to cart", () {})),
+                    Center(child: PastelRedButton("Add to cart", () =>addToCart())),
                   ],
                 ),
               ),
